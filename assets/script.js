@@ -23,29 +23,35 @@ $(function () {
     //we want MM DD YYYY
     //making variables for day and time 
 
-    const currentDay = dayjs().format(" MM, DD YYYY");
-    const currentTime = dayjs().format(" h:mm:A");
+    // const currentDay = dayjs().format(" MM, DD YYYY");
+    // const currentTime = dayjs().format(" h:mm:A");
     //this line of codes displays the current day and time 
 
-    $('header').append(currentDay);
-    $('header').append(currentTime);
+    // $('header').append(currentDay);
+    // $('header').append(currentTime);
     //making variables for day and time
+    const currentHour = dayjs().hour();
     const present = new Date();
     const past = new Date();
     past.setHours(present.getHours() - 1);
     const future = new Date();
     future.setHours(present.getHours() - 1);
     //setting up conditional statements for past present and future css 
-    if (past < currentTime) {
+    if (hour < currentHour) {
      
       $(this).addClass("past");
-
-    } else if (present === currentTime) {
-     
       $(this).removeClass("present");
+      $(this).removeClass("future");
+
+    } else if (hour === currentHour) {
+      $(this).removeClass("past");
+      $(this).addClass("present");
+      $(this).removeClass("future");
       
     } else {
-      $(this).removeClass("future");
+      $(this).addClass("future");
+      $(this).removeClass("present");
+      $(this).removeClass("past");
       
     }
 
@@ -61,8 +67,6 @@ $(function () {
 
 });
 
-
-//
 // TODO: Add code to apply the past, present, or future class to each time
 // block by comparing the id to the current hour. HINTS: How can the id
 // attribute of each time-block be used to conditionally add or remove the
@@ -70,6 +74,10 @@ $(function () {
 // current hour in 24-hour time?
 //
 //making variables for past present future 
+const currentDay = dayjs().format(" MM, DD YYYY");
+    const currentTime = dayjs().format(" h:mm:A");
+    $('header').append(currentDay);
+    $('header').append(currentTime);
 
 
 
