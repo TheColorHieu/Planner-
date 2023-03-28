@@ -1,6 +1,4 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+
 $(function () {
   //save functionality in class 
   $(".saveBtn").on("click", function () {
@@ -13,37 +11,27 @@ $(function () {
     //this is how we save the line of code 
     localStorage.setItem(id, val);
     console.log(id, val);
-    // TESTING TO SEE IF ITS WORKING
+    
   });
 
   //creating a time block function to let us know where were saving it to 
   $(".time-block").each(function () {
     const timeBlock = $(this);
-    const hour = timeBlock.attr("id").split("-").pop();
-    //we want MM DD YYYY
-    //making variables for day and time 
+    const timeOfDay = timeBlock.attr("id").split("-").pop();
+    
 
-    // const currentDay = dayjs().format(" MM, DD YYYY");
-    // const currentTime = dayjs().format(" h:mm:A");
-    //this line of codes displays the current day and time 
-
-    // $('header').append(currentDay);
-    // $('header').append(currentTime);
+   
     //making variables for day and time
     const currentHour = dayjs().hour();
-    const present = new Date();
-    const past = new Date();
-    past.setHours(present.getHours() - 1);
-    const future = new Date();
-    future.setHours(present.getHours() - 1);
+    
     //setting up conditional statements for past present and future css 
-    if (hour < currentHour) {
+    if (timeOfDay < currentHour) {
      
       $(this).addClass("past");
       $(this).removeClass("present");
       $(this).removeClass("future");
 
-    } else if (hour === currentHour) {
+    } else if (timeOfDay === currentHour) {
       $(this).removeClass("past");
       $(this).addClass("present");
       $(this).removeClass("future");
@@ -67,12 +55,7 @@ $(function () {
 
 });
 
-// TODO: Add code to apply the past, present, or future class to each time
-// block by comparing the id to the current hour. HINTS: How can the id
-// attribute of each time-block be used to conditionally add or remove the
-// past, present, and future classes? How can Day.js be used to get the
-// current hour in 24-hour time?
-//
+
 //making variables for past present future 
 const currentDay = dayjs().format(" MM, DD YYYY");
     const currentTime = dayjs().format(" h:mm:A");
